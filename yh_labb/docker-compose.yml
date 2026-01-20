@@ -13,6 +13,7 @@ services:
 
     volumes: # Skillnad mellan namngivna volymer (named volumes) och direktkopplingar (bind mounts)
       - postgres_data:/var/lib/postgresql # Namngiven volym för att databasens innehåll ska sparas (persistent lagring)
+      #- ./sql:/docker-entrypoint-initdb.d
       - ./sql:/sql # Direktkoppling (bind mount) för att dela filer mellan datorn och containern
       # Till vänster om : - den nuvarande mappen 'sql' på din dator. 
       # Till höger om : - skapar en mapp som heter 'sql' inuti Docker-containern.
