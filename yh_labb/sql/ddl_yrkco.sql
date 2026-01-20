@@ -87,7 +87,14 @@ CREATE TABLE IF NOT EXISTS Utbildare (
     specialisering VARCHAR(100),
     arvode FLOAT,
     anstallnings_id INTEGER REFERENCES Anstallda(anstallnings_id),
-    konsult_id INTEGER UNIQUE REFERENCES Konsult(konsult_id)
+    konsult_id INTEGER UNIQUE REFERENCES Konsult(konsult_id),
+
+    -- Säkrar att endast en av dessa är ifylld: 
+    CONSTRAINT check_utbildare CHECK (
+        (anstallnings_id IS NOT NULL AND konsult_id IS NULL)
+        OR
+        (anstallnings_id IS NULL AND konsult_id IS NOT NULL)
+    )
 );
 
 -- 5. Utbildningsstruktur
