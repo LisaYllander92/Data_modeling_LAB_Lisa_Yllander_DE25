@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Adress (
 CREATE TABLE IF NOT EXISTS Program (
     program_id INTEGER PRIMARY KEY,
     program_namn VARCHAR(50) NOT NULL,
-    start_datum DATE NOT NULL,
+    start_datum DATE NOT NULL, -- ÅÅÅÅ-MM-DD standardformat 
     slut_datum DATE NOT NULL
 );
 
@@ -68,9 +68,13 @@ CREATE TABLE IF NOT EXISTS Anstallda (
 -- 4. Tabeller för personlig information och roller
 CREATE TABLE IF NOT EXISTS AnstalldaUppgifter (
     au_id INTEGER PRIMARY KEY,
-    a_person_nr VARCHAR(13) UNIQUE NOT NULL,
+    -- Använder RegEX för att styra formatet på personnummer till: ÅÅÅÅMMDD-XXXX 
+    a_person_nr VARCHAR(13) UNIQUE NOT NULL
+    CHECK (a_person_nr SIMILAR TO '[0-9]{8}-[0-9]{4}'),
     a_email VARCHAR(254) UNIQUE NOT NULL,
-    a_tele_nr VARCHAR(20) NOT NULL,
+    -- RexEX för att telefonnummer ska kräva landskod men kunna ta emot både "hemnummer" och mobilnummer
+    a_tele_nr VARCHAR(20) NOT NULL
+    CHECK (a_tele_nr ~ '^\+[1-9][0-9]{1,3}[0-9 ]{6,12}$'),
     konto_nr VARCHAR(50) NOT NULL,
     lon FLOAT,
     anstallnings_id INTEGER UNIQUE REFERENCES Anstallda(anstallnings_id),
@@ -132,9 +136,13 @@ CREATE TABLE IF NOT EXISTS Student (
 
 CREATE TABLE IF NOT EXISTS StudentUppgifter (
     su_id INTEGER PRIMARY KEY,
-    s_person_nr VARCHAR(13) UNIQUE NOT NULL,
+    -- Använder RegEX för att styra formatet på personnummer till: ÅÅÅÅMMDD-XXXX 
+    s_person_nr VARCHAR(13) UNIQUE NOT NULL
+    CHECK (s_person_nr SIMILAR TO '[0-9]{8}-[0-9]{4}'),
     s_email VARCHAR(254) UNIQUE NOT NULL,
-    s_tele_nr VARCHAR(20),
+    -- RexEX för att telefonnummer ska kräva landskod men kunna ta emot både "hemnummer" och mobilnummer
+    s_tele_nr VARCHAR(20)
+    CHECK (s_tele_nr ~ '^\+[1-9][0-9]{1,3}[0-9 ]{6,12}$'),
     adress_id INTEGER NOT NULL REFERENCES Adress(adress_id),
     student_id INTEGER NOT NULL UNIQUE REFERENCES Student(student_id)
 );
