@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS Anstallda (
 );
 
 -- 4. Tabeller för personlig information och roller
+
 CREATE TABLE IF NOT EXISTS AnstalldaUppgifter (
     au_id INTEGER PRIMARY KEY,
     -- Använder RegEX för att styra formatet på personnummer till: ÅÅÅÅMMDD-XXXX 
