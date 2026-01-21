@@ -10,3 +10,7 @@ INSERT INTO Anstallda (anstallnings_id, a_fornamn, a_efternamn, jobb_titel, jobb
 INSERT INTO Utbildare (utbildare_id, specialisering, arvode, anstallnings_id, konsult_id) VALUES
 (7, 'Data Modellering', NULL, 7, 4)
 
+-- Testar lägga till en Student i en klass som inte finns
+-- Försök lägga till en student i en klass som inte finns (t.ex. id 999)
+INSERT INTO yrkesco.Student (student_id, s_fornamn, s_efternamn, klass_id)
+VALUES (99, 'Test', 'Testsson', 999);
