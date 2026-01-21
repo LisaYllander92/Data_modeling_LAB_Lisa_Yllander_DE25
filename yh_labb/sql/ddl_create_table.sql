@@ -134,6 +134,15 @@ CREATE TABLE IF NOT EXISTS Student (
     klass_id INTEGER REFERENCES Klass(klass_id)
 );
 
+CREATE TABLE IF NOT EXISTS LIA_Matchning (
+    lia_id INTEGER PRIMARY KEY,
+    handledare_namn VARCHAR(100),
+    period VARCHAR(20), -- tex 'LIA 1' 'LIA 2'
+    student_id INTEGER NOT NULL REFERENCES Student(student_id),
+    foretags_id INTEGER NOT NULL REFERENCES Foretag(foretags_id)
+
+);
+
 CREATE TABLE IF NOT EXISTS StudentUppgifter (
     su_id INTEGER PRIMARY KEY,
     -- Använder RegEX för att styra formatet på personnummer till: ÅÅÅÅMMDD-XXXX 
