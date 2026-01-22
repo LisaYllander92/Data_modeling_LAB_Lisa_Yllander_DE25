@@ -18,8 +18,12 @@ Därefter utvecklade jag den logiska modellen. Här definierade jag specifika at
 <img src="./bilder/KonceptuellModell_v12.png" alt="Konceptuell Modell" width="600">
 
 ## Logisk modell
-<img src="./bilder/LogiskModell_v7.png" alt="Konceptuell Modell" width="600"> 
+<img src="./bilder/LogiskModell_v9.png" alt="Konceptuell Modell" width="600"> 
 
+### 3NF - Third Normal Form
+- 1NF – Databasen uppfyller 1NF genom att eliminera flervärdesattribut och upprepade grupper. Varje entitet har en tydlig definierad primärnyckel (PK) och samtliga attribut en enhetlig datatyp
+- 2NF – Databasen uppfyller 2NF genom att inga andra attribut förekommer i tabellen ProgramInnehåll som har två primärnycklar, en så kallad sammansatt nyckel
+- 3NF – Databasen uppfyller 3NF genom att alla "non-prime" attribut är direkt och uteslutande beroende av primärnyckeln
 
 ## 2. Implementering med Docker Compose
 Efter modelleringen översatte jag min design till SQL-kod och körde den i en PostgreSQL-container via Docker. För att hantera konfigurationen skapade jag en docker-compose.yml-fil och en .env-fil för säker hantering av miljövariabler.
@@ -37,22 +41,29 @@ docker compose up -d
 docker exec -it yrkco psql -U yrkesco -d yrkco_db
 ```
 
+3. Lägg till tabeller:
+```bash
+\i/sql/ddl_create_table.sql
+```
+
+
 ## 3. Verifiering & Validering 
 För att säkerställa att databasen uppfyller kraven har jag genomfört följande tester:
 - Constraints: Verifierat att felaktig data (t.ex. ogiltiga betyg eller felaktiga e-postformat) stoppas vid inmatning.
 - Dataintegritet: Testat att kopplingar mellan tabeller (Foreign Keys) förhindrar att exempelvis studenter läggs till i klasser som inte existerar.
 - Analys: Skapat JOIN-frågor som hämtar ut meningsfull data, exempelvis procentandelen studenter med LIA-plats per anläggning.
 
-## Hjälp och källor
+## Hjälp och Källor
 ERD
-- https://github.com/AIgineerAB/data_modeling_course/tree/main/03_erd_conceptual_model
-- https://github.com/AIgineerAB/data_modeling_course/tree/main/04_erd_logical_physical_model
+- [Conseptual Model](https://github.com/AIgineerAB/data_modeling_course/tree/main/03_erd_conceptual_model)
+- [Logical & Physical Model](https://github.com/AIgineerAB/data_modeling_course/tree/main/04_erd_logical_physical_model)
 
-Docker setup & Docker-compose
-- https://github.com/AIgineerAB/data_platform_course/tree/main/04_setup_docker
-- https://github.com/AIgineerAB/data_modeling_course/tree/main/05_setup_postgres
+Setup's & Docker-compose
+- [Setup postgreSQL](https://github.com/AIgineerAB/data_modeling_course/tree/main/05_setup_postgres)
+- [Setup Docker](https://github.com/AIgineerAB/data_platform_course/tree/main/04_setup_docker)
+- [Run postgres using Docker](https://mkyong.com/docker/docker-running-postgresql-as-a-container/)
 
-Normalisering
-- https://github.com/AIgineerAB/data_modeling_course/tree/main/07_normalization
+3NF
+- [Normalization](https://github.com/AIgineerAB/data_modeling_course/tree/main/07_normalization)
 
-Jag har även haft stor nytta av anteckningar från lektioner och tidgare arbeten med Regular Expression och SQL-queries. Jag har använt LLM för att generera fejk data (VALUES) och som stöd i olika moment där jag inte själv kunnat hitta svaret/lösa uppgiften.   
+Jag har även haft stor nytta av anteckningar från lektioner och tidgare arbeten med Regular Expression och SQL-queries. Jag har använt LLM för att generera fejk data (VALUES) och som stöd/bollplank i vissa moment där jag inte lyckats hitta svaret (eller problemet) på egen hand. 
