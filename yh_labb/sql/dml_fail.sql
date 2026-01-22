@@ -1,3 +1,7 @@
+SET
+    search_path TO yrkesco,
+    public;
+
 -- Testar att skriva in betyget 'MVG' i betyg som endast godkänner 'G', 'VG', eller 'IG'
 INSERT INTO Registrering (registrerings_id, registerings_datum, betyg, betygs_datum, reg_status, genomforande_id, student_id) VALUES 
 (1, '2024-09-25', 'MVG', '2024-11-20', 'Betygsatt', 1, 1);
