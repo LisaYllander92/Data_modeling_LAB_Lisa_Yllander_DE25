@@ -9,6 +9,10 @@ För mer information om labben: \
 [Labb_beskrivning (PDF)](/bilder/lab_yrkesco.pdf)
 ## Video-pitch
 
+Se hela presentationen: \
+[Labb_presentation (PDF)](/bilder/labb_presentation.pdf)
+
+
 # Arbetsprocess
 ## 1. Datamodellering
 Först gjorde jag själva datamodelleringen i form av ett ERD (Entity Relationship Diagram). Detta innebar att jag analyserade kravspecifikationen för att identifiera verksamhetens viktigaste byggstenar (entiteter) och hur de hänger ihop (relationer), vilket resulterade i en konceptuell modell.\
@@ -18,7 +22,7 @@ Därefter utvecklade jag den logiska modellen. Här definierade jag specifika at
 <img src="./bilder/KonceptuellModell_v14.png" alt="Konceptuell Modell" width="600">
 
 ## Logisk modell
-<img src="./bilder/LogiskModell_v10.png" alt="Konceptuell Modell" width="600"> 
+<img src="./bilder/LogiskModell_v11.png" alt="Konceptuell Modell" width="600"> 
 
 ### 3NF - Third Normal Form
 - 1NF – Databasen uppfyller 1NF genom att eliminera flervärdesattribut och upprepade grupper. Varje entitet har en tydlig definierad primärnyckel (PK) och samtliga attribut en enhetlig datatyp
