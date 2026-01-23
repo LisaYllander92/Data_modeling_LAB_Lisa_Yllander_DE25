@@ -9,7 +9,7 @@ För mer information om labben: \
 [Labb_beskrivning (PDF)](/bilder/lab_yrkesco.pdf)
 ## Video-pitch
 
-Se hela presentationen: \
+Presentation: \
 [Labb_presentation (PDF)](/bilder/labb_presentation.pdf)
 
 
@@ -70,7 +70,7 @@ docker compose down -v
 ## 3. Verifiering & Validering 
 För att säkerställa att databasen uppfyller kraven har jag genomfört följande tester:
 - Constraints: Verifierat att felaktig data (t.ex. ogiltiga betyg eller felaktiga e-postformat) stoppas vid inmatning.
-- Dataintegritet: Testat att kopplingar mellan tabeller (Foreign Keys) förhindrar att exempelvis studenter läggs till i klasser som inte existerar.
+- Logisk integritet (XOR): Testat hybridmodellen för utbildare genom att försöka registrera en person som både konsult och anställd samtidigt. Systemet blockerar detta för att förhindra administrativa dubbletter
 - Analys: Skapat JOIN-frågor som hämtar ut meningsfull data, exempelvis procentandelen studenter med LIA-plats per anläggning.
 
 ## Hjälp och Källor
@@ -86,9 +86,9 @@ Setup's & Docker-compose
 3NF
 - [Normalization](https://github.com/AIgineerAB/data_modeling_course/tree/main/07_normalization)
 
-Övrigt
+Struktur
 - [Create table with foreign key](https://www.geeksforgeeks.org/sql/how-to-create-a-table-with-a-foreign-key-in-sql/)
 
-
+Övrigt
 - Jag har även haft stor nytta av anteckningar från lektioner och tidgare arbeten med Regular Expression och SQL-queries. 
 - Jag har använt LLM för att generera fejk data (VALUES) och som stöd/bollplank i vissa moment där jag inte lyckats hitta svaret (eller problemet) på egen hand. 

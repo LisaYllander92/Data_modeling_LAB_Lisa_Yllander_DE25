@@ -1,2 +1,6 @@
 # Skyddade uppgifter
 .env
+
+# Python virtuell miljö
+.venv/
+__pycache__/
