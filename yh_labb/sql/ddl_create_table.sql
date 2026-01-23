@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS yrkesco CASCADE;
 -- 1. Skapar ett schema (mapp) för att samla allt som rör Yrkesco på ett ställe.
 -- Detta ökar säkerheten, underlättar behörighetsstyrning och håller databasen organiserad.
 CREATE SCHEMA IF NOT EXISTS yrkesco;
@@ -19,8 +20,7 @@ CREATE TABLE IF NOT EXISTS Adress (
 CREATE TABLE IF NOT EXISTS Program (
     program_id INTEGER PRIMARY KEY,
     program_namn VARCHAR(50) NOT NULL,
-    start_datum DATE NOT NULL,
-    -- ÅÅÅÅ-MM-DD standardformat 
+    start_datum DATE NOT NULL, -- ÅÅÅÅ-MM-DD standardformat 
     slut_datum DATE NOT NULL
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Anstallda (
     a_efternamn VARCHAR(100) NOT NULL,
     jobb_titel VARCHAR(100) NOT NULL,
     jobb_mail VARCHAR(100) NOT NULL,
-    avdelning VARCHAR(100) NOT NULL,
+    avdelning VARCHAR(100),
     arbets_beskrivning VARCHAR(500),
     ar_utbildare BOOLEAN,
     ar_ul BOOLEAN,
@@ -91,7 +91,6 @@ CREATE TABLE IF NOT EXISTS UtbildningsLedare (
 CREATE TABLE IF NOT EXISTS Utbildare (
     utbildare_id INTEGER PRIMARY KEY,
     specialisering VARCHAR(100),
-    arvode FLOAT,
     anstallnings_id INTEGER REFERENCES Anstallda(anstallnings_id),
     konsult_id INTEGER UNIQUE REFERENCES Konsult(konsult_id),
     -- Säkrar att endast en av dessa är ifylld: 
@@ -126,7 +125,7 @@ CREATE TABLE IF NOT EXISTS KursGenomforande (
     genomforande_id INTEGER PRIMARY KEY,
     start_datum DATE NOT NULL,
     slut_datum DATE NOT NULL,
-    termin VARCHAR(20) NOT NULL,
+    termin VARCHAR(10) NOT NULL,
     STATUS VARCHAR(50) NOT NULL,
     utbildare_id INTEGER REFERENCES Utbildare(utbildare_id),
     kurs_id INTEGER REFERENCES Kurs(kurs_id)

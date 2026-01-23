@@ -49,13 +49,13 @@ INSERT INTO Anstallda (anstallnings_id, a_fornamn, a_efternamn, jobb_titel, jobb
 (6, 'Erik', 'Lund', 'Lärare', 'erik@yrkco.se', 'IT', TRUE, FALSE, 2); -- GBG
 
 -- 10. Utbildare 
-INSERT INTO Utbildare (utbildare_id, specialisering, arvode, anstallnings_id, konsult_id) VALUES 
-(1, 'Java & Backend', NULL, 2, NULL),  -- Mikael (Anställd STHLM)
-(2, 'SQL Specialist', 850.0, NULL, 1), -- Anders (Konsult)
-(3, 'Frontend Expert', 920.0, NULL, 2),-- Beatrice (Konsult)
-(4, 'C# & Web', NULL, 4, NULL),        -- Sven (Anställd GBG)
-(5, 'UX & Design', NULL, 5, NULL),     -- Anna (Anställd STHLM)
-(6, 'JavaScript', NULL, 6, NULL);      -- Erik (Anställd GBG)
+INSERT INTO Utbildare (utbildare_id, specialisering, anstallnings_id, konsult_id) VALUES 
+(1, 'Java & Backend', 2, NULL),  -- Mikael (Anställd STHLM)
+(2, 'SQL Specialist', NULL, 1), -- Anders (Konsult)
+(3, 'Frontend Expert', NULL, 2),-- Beatrice (Konsult)
+(4, 'C# & Web', 4, NULL),        -- Sven (Anställd GBG)
+(5, 'UX & Design', 5, NULL),     -- Anna (Anställd STHLM)
+(6, 'JavaScript', 6, NULL);      -- Erik (Anställd GBG)
 
 -- 11. Klasser 
 INSERT INTO Klass (klass_id, klass_namn, start_ar, program_id, ul_id, omgang) VALUES 
@@ -64,9 +64,9 @@ INSERT INTO Klass (klass_id, klass_namn, start_ar, program_id, ul_id, omgang) VA
 
 -- 13. KursGenomförande (Kopplar lärare till specifika kurser)
 INSERT INTO KursGenomforande (genomforande_id, start_datum, slut_datum, termin, status, utbildare_id, kurs_id) VALUES 
-(1, '2024-10-01', '2024-11-15', 'Höst 2024', 'Pågår', 2, 1), -- Konsult Anders
-(2, '2024-09-01', '2024-10-30', 'Höst 2024', 'Avslutad', 1, 2), -- Anställd Mikael
-(3, '2024-11-01', '2024-12-20', 'Höst 2024', 'Pågår', 4, 1); -- Anställd Sven (GBG)
+(1, '2024-10-01', '2024-11-15', 'HT24', 'Pågår', 2, 1), -- Konsult Anders
+(2, '2024-09-01', '2024-10-30', 'HT24', 'Avslutad', 1, 2), -- Anställd Mikael
+(3, '2024-11-01', '2024-12-20', 'HT24', 'Pågår', 4, 1); -- Anställd Sven (GBG)
 
 -- 14. Studenter (Fler studenter för att visa LIA-variation)
 INSERT INTO Student (student_id, s_fornamn, s_efternamn, klass_id) VALUES 
@@ -82,7 +82,7 @@ INSERT INTO Registrering (registrerings_id, registerings_datum, betyg, betygs_da
 (3, '2024-09-25', NULL, NULL, 'Registrerad', 1, 3);
 
 -- 17. LIA_Matchning (Endast 2 av 4 studenter har fått LIA)
-INSERT INTO LIA (lia_id, handledare_namn, period, student_id, foretags_id) VALUES 
+INSERT INTO LIA_Matchning (lia_id, handledare_namn, period, student_id, foretags_id) VALUES 
 (1, 'Karl Handledarsson', 'LIA 1', 1, 3), -- Erik har LIA
 (2, 'Anna Chefsson', 'LIA 2', 2, 2);    -- Sara har LIA
 -- Johan och Maria har ingen post här = Ingen LIA ännu.

@@ -15,15 +15,18 @@ Först gjorde jag själva datamodelleringen i form av ett ERD (Entity Relationsh
 Därefter utvecklade jag den logiska modellen. Här definierade jag specifika attribut för varje tabell samt datatyper för att säkerställa att strukturen uppfyller kraven för 3NF (Tredje normalformen). Slutligen översatte jag den logiska designen till en fysisk modell i dbdiagram, vilket lade grunden för den faktiska SQL-implementeringen.
 
 ## Konseptuell modell
-<img src="./bilder/KonceptuellModell_v12.png" alt="Konceptuell Modell" width="600">
+<img src="./bilder/KonceptuellModell_v13.png" alt="Konceptuell Modell" width="600">
 
 ## Logisk modell
-<img src="./bilder/LogiskModell_v9.png" alt="Konceptuell Modell" width="600"> 
+<img src="./bilder/LogiskModell_v10.png" alt="Konceptuell Modell" width="600"> 
 
 ### 3NF - Third Normal Form
 - 1NF – Databasen uppfyller 1NF genom att eliminera flervärdesattribut och upprepade grupper. Varje entitet har en tydlig definierad primärnyckel (PK) och samtliga attribut en enhetlig datatyp
 - 2NF – Databasen uppfyller 2NF genom att inga andra attribut förekommer i tabellen ProgramInnehåll som har två primärnycklar, en så kallad sammansatt nyckel
 - 3NF – Databasen uppfyller 3NF genom att alla "non-prime" attribut är direkt och uteslutande beroende av primärnyckeln
+
+## Fysisk modell
+<img src="./bilder/FysiskModell_v5.png" alt="Konceptuell Modell" width="600"> 
 
 ## 2. Implementering med Docker Compose
 Efter modelleringen översatte jag min design till SQL-kod och körde den i en PostgreSQL-container via Docker. För att hantera konfigurationen skapade jag en docker-compose.yml-fil och en .env-fil för säker hantering av miljövariabler.
@@ -66,4 +69,9 @@ Setup's & Docker-compose
 3NF
 - [Normalization](https://github.com/AIgineerAB/data_modeling_course/tree/main/07_normalization)
 
-Jag har även haft stor nytta av anteckningar från lektioner och tidgare arbeten med Regular Expression och SQL-queries. Jag har använt LLM för att generera fejk data (VALUES) och som stöd/bollplank i vissa moment där jag inte lyckats hitta svaret (eller problemet) på egen hand. 
+Övrigt
+- [Create table with foreign key](https://www.geeksforgeeks.org/sql/how-to-create-a-table-with-a-foreign-key-in-sql/)
+
+
+- Jag har även haft stor nytta av anteckningar från lektioner och tidgare arbeten med Regular Expression och SQL-queries. 
+- Jag har använt LLM för att generera fejk data (VALUES) och som stöd/bollplank i vissa moment där jag inte lyckats hitta svaret (eller problemet) på egen hand. 

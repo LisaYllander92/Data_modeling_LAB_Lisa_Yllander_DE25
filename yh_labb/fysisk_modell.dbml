@@ -25,32 +25,32 @@ Table Anstallda{
   anlaggnings_id INTEGER [ref: > Anlaggning.anlaggnings_id]
 }
 
-Table AnstalldaUppgifter{
+Table AnstalldaUppgifter{ Note: "Begränsad åtkomst"
   au_id INTEGER [PRIMARY KEY]
   a_person_nr VARCHAR(13) [UNIQUE, NOT NULL]
   a_email VARCHAR(254) [UNIQUE, NOT NULL]
   a_tele_nr VARCHAR(20) [NOT NULL]
   konto_nr VARCHAR [NOT NULL]
+  lon FLOAT
   anstallnings_id INTEGER [ref: - Anstallda.anstallnings_id]
   adress_id INTEGER [ref: > Adress.adress_id]
 }
 
-Table UtbildningsLedare{
+Table UtbildningsLedare{ Note: "En ul har han om max tre klasser åt gången"
   ul_id INTEGER [PRIMARY KEY]
   anstallnings_id INTEGER [ref: > Anstallda.anstallnings_id]
 }
 
-Table Utbildare{
+Table Utbildare{ Note: "Utbildare kan vara antingen konsulter ELLER anställa"
   utbildare_id INTEGER [PRIMARY KEY]
   specialisering VARCHAR(100)
-  arvode FLOAT 
-  anstallnings_id INTEGER [ref: > Anstallda.anstallnings_id]
-  konsult_id INTEGER [UNIQUE, ref: > Konsult.konsult_id]
+  anstallnings_id INTEGER [ref: > Anstallda.anstallnings_id] //Går endast att välja eantingen den ena...
+  konsult_id INTEGER [UNIQUE, ref: > Konsult.konsult_id] //... ELLER den andra
 }
 
 Table Konsult{
   konsult_id INTEGER [PRIMARY KEY]
-  k_fornamn VARCHAR(50) [NOT NULL]
+  k_fornamn VARCHAR(50) [NOT NULL] // konsulterns namn lagras här för snabbare åtkomst
   k_efternamn VARCHAR(100) [NOT NULL]
   timarvode FLOAT [NOT NULL]
   foretags_id INTEGER [NOT NULL, ref: > Foretag.foretags_id]
@@ -60,7 +60,7 @@ Table Foretag{
   foretags_id INTEGER [PRIMARY KEY]
   org_nr VARCHAR(50) [NOT NULL]
   foretags_namn VARCHAR(150) [NOT NULL]
-  f_skatt_status BOOLEAN [NOT NULL]
+  f_skatt_status BOOL [NOT NULL]
   adress_id INTEGER [ref: > Adress.adress_id]
 }
 
@@ -68,11 +68,12 @@ Table Klass{
   klass_id INTEGER [PRIMARY KEY]
   klass_namn VARCHAR(50) [NOT NULL]
   start_ar INTEGER [NOT NULL]
+  omgang INTEGER [NOT NULL] //Ett program beviljas i tre omgångar (dvs tre klasser/årsgångar)
   program_id INTEGER [ref: > Program.program_id]
-  ul_id INTEGER [ref: > UtbildningsLedare.ul_id]
+  ul_id INTEGER [ref: > UtbildningsLedare.ul_id] //En ul har han om MAX tre klasser (åt gången)
 }
 
-Table Program{
+Table Program{ Note: "Ett program beviljas i tre omgångar, dvs tre klasser"
   program_id INTEGER [PRIMARY KEY]
   program_namn VARCHAR(50) [NOT NULL]
   start_datum DATE [NOT NULL]
@@ -84,7 +85,7 @@ Table ProgramInnehall{
   kurs_id INTEGER [PRIMARY KEY, ref: > Kurs.kurs_id]
 }
 
-Table Kurs{
+Table Kurs{ Note: "En kurs kan ingå i ett program och/eller vara fristående"
   kurs_id INTEGER [PRIMARY KEY]
   kurs_namn VARCHAR(50) [NOT NULL]
   kurs_kod VARCHAR(50) [NOT NULL]
@@ -109,7 +110,7 @@ Table Student{
   klass_id INTEGER [ref: > Klass.klass_id]
 }
 
-Table LIA_Matchning{
+Table LIA_Matchning{ Note: "En student kan genomgå en eller flera LIA-perioder"
   lia_id INTEGER [PRIMARY KEY]
   handledare_namn VARCHAR(100)
   period VARCHAR(20)
@@ -117,7 +118,7 @@ Table LIA_Matchning{
   foretags_id INTEGER [NOT NULL, ref: > Foretag.foretags_id]
 }
 
-Table StudentUppgifter{
+Table StudentUppgifter{ Note: "Begränsad åtkomst"
   su_id INTEGER [PRIMARY KEY]
   s_person_nr VARCHAR(13) [UNIQUE, NOT NULL]
   s_email VARCHAR(254) [UNIQUE, NOT NULL]
