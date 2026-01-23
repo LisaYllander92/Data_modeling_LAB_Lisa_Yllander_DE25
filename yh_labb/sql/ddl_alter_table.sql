@@ -20,4 +20,4 @@ CHECK (a_email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
 ALTER TABLE Anstallda
 ADD CONSTRAINT j_email_check
-CHECK ((jobb_mail ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');)
+CHECK (jobb_mail ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
