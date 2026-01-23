@@ -15,7 +15,7 @@ Först gjorde jag själva datamodelleringen i form av ett ERD (Entity Relationsh
 Därefter utvecklade jag den logiska modellen. Här definierade jag specifika attribut för varje tabell samt datatyper för att säkerställa att strukturen uppfyller kraven för 3NF (Tredje normalformen). Slutligen översatte jag den logiska designen till en fysisk modell i dbdiagram, vilket lade grunden för den faktiska SQL-implementeringen.
 
 ## Konseptuell modell
-<img src="./bilder/KonceptuellModell_v13.png" alt="Konceptuell Modell" width="600">
+<img src="./bilder/KonceptuellModell_v14.png" alt="Konceptuell Modell" width="600">
 
 ## Logisk modell
 <img src="./bilder/LogiskModell_v10.png" alt="Konceptuell Modell" width="600"> 
@@ -34,21 +34,34 @@ För att skapa en ny container och köra i Docker:
 
 ### Guide: Starta och anslut till databasen
 
-1. Starta containern (skapa image, volym och nätverk):
+1. Kolla om någon container är igång/"helthcheck":
+```bash
+docker ps
+```
+2. Starta containern (skapa image, volym och nätverk):
 ```bash
 docker compose up -d
 ```
-
-2. Anslut direkt till PostgreSQL i containern:
+3. Anslut direkt till PostgreSQL i containern:
 ```bash
 docker exec -it yrkco psql -U yrkesco -d yrkco_db
 ```
-
-3. Lägg till tabeller:
+4. Lägg till tabeller (tables):
 ```bash
-\i/sql/ddl_create_table.sql
+\i sql/ddl_create_table.sql
 ```
-
+5. Lägg till ädringar (ALTER table):
+```bash
+\i sql/ddl_alter_table.sql
+``` 
+6. Lägg till data (VALUES):
+```bash
+\i sql/dml_insert_data.sql
+```
+7. Stänga ned containern & volym:
+```bash
+docker compose down -v
+``` 
 
 ## 3. Verifiering & Validering 
 För att säkerställa att databasen uppfyller kraven har jag genomfört följande tester:
