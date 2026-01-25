@@ -8,6 +8,9 @@ Målet var att ersätta deras nuvarande manuella hantering i Excel med en robust
 För mer information om labben: \
 [Labb_beskrivning (PDF)](/bilder/lab_yrkesco.pdf)
 ## Video-pitch
+<a href="https://youtu.be/lHl7k7SZTls">
+  <img src="./bilder/yrkco.png" alt="Video presentation" width="600">
+</a>
 
 Presentation: \
 [Labb_presentation (PDF)](/bilder/labb_presentation.pdf)
